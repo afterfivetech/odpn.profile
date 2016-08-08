@@ -21,6 +21,23 @@ from plone.app.textfield import RichText
 from z3c.form import form
 from plone.app.form.widgets.wysiwygwidget import WYSIWYGWidget
 from plone.z3cform.fieldsets.utils import move
+from plone.app.users.browser.formlib import FileUpload
+from plone.app.users.browser.interfaces import EmailAddressInvalid
+from zope.component import getUtility
+from Products.CMFCore.interfaces import ISiteRoot
+from Products.CMFCore.utils import getToolByName
+from zope.interface import invariant, Invalid
+
+def checkEmailAddress(value):
+    portal = getUtility(ISiteRoot)
+
+    reg_tool = getToolByName(portal, 'portal_registration')
+    if value and reg_tool.isValidEmail(value):
+        pass
+    else:
+        raise EmailAddressInvalid
+    return True
+
 
 class IEnhancedUserDataSchema(IUserDataSchema):
     # ...
@@ -50,12 +67,18 @@ class IEnhancedUserDataSchema(IUserDataSchema):
         required=False,
         )
 
-    email_address_2 = schema.TextLine(
-        title=_(u'Email Address'),
-        description=_(u'email_address_2',
-                      default=u"Reenter Email Address"),
-        required=False,
-        )
+    email = schema.ASCIILine(
+        title=_(u'label_email', default=u'Email Address'),
+        description=u'',
+        required=True,
+        constraint=checkEmailAddress)
+
+    # email_address_2 = schema.TextLine(
+    #     title=_(u'Email Address'),
+    #     description=_(u'email_address_2',
+    #                   default=u"Reenter E-mail"),
+    #     required=True,
+    #     )
 
     industry = schema.TextLine(
         title=_(u'Industry'),
@@ -79,6 +102,24 @@ class IEnhancedUserDataSchema(IUserDataSchema):
         required=False,
         )
 
+    portrait = FileUpload(title=_(u'label_portrait', default=u'Portrait'),
+        description=_(u'help_portrait',
+                      default=u'To add or change the portrait: click the '
+                      '"Browse" button; select a picture of yourself. '
+                      'Recommended image size is 75 pixels wide by 100 '
+                      'pixels tall.'),
+        required=False)
+
+    pdelete = schema.Bool(
+        title=_(u'label_delete_portrait', default=u'Delete Portrait'),
+        description=u'',
+        required=False)
+
+    # @invariant
+    # def email_validate(data):
+    #     if data.email_address_2 !=  data.email:
+    #         raise Invalid(_(u"Invalid email address"))
+
 class UserDataSchemaProvider(object):
     implements(IUserDataSchemaProvider)
 
@@ -93,9 +134,10 @@ class UserDataPanelExtender(extensible.FormExtender):
     
     def update(self):
         fields = Fields(IEnhancedUserDataSchema)
+        import pdb; pdb.set_trace()
         self.add(fields)
-        # self.move('email', before='email_address_2', prefix="")
-        # self.move('portrait', before='user_biography', prefix="")
+        
+      
 
 class CustomizedUserDataPanel(UserDataPanel):
     def __init__(self, context, request):
@@ -104,6 +146,9 @@ class CustomizedUserDataPanel(UserDataPanel):
         self.form_fields = self.form_fields.omit('location')
         self.form_fields = self.form_fields.omit('home_page')
         self.form_fields['user_biography'].custom_widget = WYSIWYGWidget
+
+
+
 
 
 
