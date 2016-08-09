@@ -22,17 +22,6 @@
 
     <!-- -*- extra stuff goes here -*- -->
 
-    <adapter
-        factory=".userdataschema.UserDataPanelExtender"
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        />
 
-    <browser:page
-        for="Products.CMFPlone.Portal.PloneSite"
-        name="personal-information"
-        class=".userdataschema.CustomizedUserDataPanel"
-        permission="cmf.SetOwnProperties"
-        layer=".interfaces.IProductSpecific"
-    />
 
 </configure>

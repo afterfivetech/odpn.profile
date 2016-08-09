@@ -8,11 +8,5 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="odpn.profile">
-
-    <adapter
-          provides=".userdataschema.IEnhancedUserDataSchema"
-          for="Products.CMFCore.interfaces.ISiteRoot"
-          factory=".adapter.EnhancedUserDataSchemaAdapter"
-          />
   
 </configure>
