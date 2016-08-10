@@ -4,7 +4,12 @@
        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
        i18n:domain="plone">
   <schema name="member-fields">
-   
+
+    <field type="zope.schema.TextLine"
+       name="fullname">
+      <title>Firstname</title>
+    </field>
+  
     <field name="description" type="zope.schema.Text"
       users:forms="In User Profile">
       <description i18n:translate="help_biography">
@@ -17,7 +22,8 @@
     <field name="portrait"
            type="plone.namedfile.field.NamedBlobImage"
            form:widget="plone.app.users.schema.PortraitFieldWidget"
-           users:forms="In User Profile">
+           users:forms="In User Profile"
+           form:after="secondary_competencies">
       <description i18n:translate="help_portrait">
           To add or change the portrait: click the "Browse" button; select a picture of yourself. Recommended image size is 75 pixels wide by 100 pixels tall.
       </description>
