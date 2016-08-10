@@ -25,6 +25,8 @@ from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.utils import getToolByName
 from zope.interface import invariant, Invalid
 from plone.app.users.browser.userdatapanel import UserDataPanel
+from plone.autoform import directives
+
 
 
 class IEnhancedUserDataSchema(model.Schema):
@@ -33,6 +35,10 @@ class IEnhancedUserDataSchema(model.Schema):
     #     title=_(u'First Name'),
     #     required=False,
     #     )
+    first_name = schema.TextLine(
+        title=_(u'First Name'),
+        required=False,
+        )
 
     mid_initial = schema.TextLine(
         title=_(u'Middle Initial'),
@@ -107,6 +113,10 @@ class UserDataPanelExtender(extensible.FormExtender):
     def update(self):
         fields = Fields(IEnhancedUserDataSchema)
         self.add(fields)
+        self.remove('fullname')
+        self.remove('portrait')
+        self.move('email', after='cellphone_no')
+        self.move('description', after='secondary_competencies')
         
 class EnhancedUserDataSchemaAdapter(AccountPanelSchemaAdapter):
     schema = IEnhancedUserDataSchema
