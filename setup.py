@@ -34,6 +34,7 @@ setup(name='odpn.profile',
           'plone.app.multilingual',
           'plone.multilingualbehavior',
           'plone.app.versioningbehavior',
+          'plone.formwidget.contenttree',
           # -*- Extra requirements: -*-
       ],
       extras_require={
