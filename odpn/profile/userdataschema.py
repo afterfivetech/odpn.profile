@@ -114,7 +114,7 @@ class UserDataPanelExtender(extensible.FormExtender):
     def update(self):
         fields = Fields(IEnhancedUserDataSchema)
         self.add(fields)
-        self.remove('portrait')
+        #self.remove('portrait')
         self.move('email', after='cellphone_no')
         self.move('description', after='secondary_competencies')
         #self.form.fields['fullname'].mode = HIDDEN_MODE
