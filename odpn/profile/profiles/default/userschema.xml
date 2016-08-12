@@ -5,10 +5,10 @@
        i18n:domain="plone">
   <schema name="member-fields">
 
-    <field type="zope.schema.TextLine"
+    <!--<field type="zope.schema.TextLine"
        name="fullname">
       <title>Firstname</title>
-    </field>
+    </field>-->
   
     <field name="description" type="zope.schema.Text"
       users:forms="In User Profile">
