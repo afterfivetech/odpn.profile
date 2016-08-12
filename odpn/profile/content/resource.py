@@ -31,6 +31,14 @@ class IResource(form.Schema, IImageScaleTraversable):
     """
     Resource
     """
+    authors = schema.Text(
+           title=_(u"Authors"),
+           required=True,
+        )
+    resource_type = schema.TextLine(
+           title=_(u"Type"),
+           required=True,
+        )
     pass
 
 alsoProvides(IResource, IFormFieldProvider)
