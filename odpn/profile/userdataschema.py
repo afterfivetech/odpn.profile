@@ -117,7 +117,7 @@ class UserDataPanelExtender(extensible.FormExtender):
         self.remove('portrait')
         self.move('email', after='cellphone_no')
         self.move('description', after='secondary_competencies')
-        self.form.fields['fullname'].mode = HIDDEN_MODE
+        #self.form.fields['fullname'].mode = HIDDEN_MODE
         
 class EnhancedUserDataSchemaAdapter(AccountPanelSchemaAdapter):
     schema = IEnhancedUserDataSchema
