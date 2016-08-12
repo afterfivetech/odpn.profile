@@ -31,10 +31,11 @@ setup(name='odpn.profile',
           'collective.grok',
           'plone.app.referenceablebehavior',
           'collective.dexteritytextindexer',
-          'plone.app.multilingual',
-          'plone.multilingualbehavior',
+#          'plone.app.multilingual',
+#          'plone.multilingualbehavior',
           'plone.app.versioningbehavior',
           'plone.formwidget.contenttree',
+          'Products.ATContentTypes',
           # -*- Extra requirements: -*-
       ],
       extras_require={
