@@ -116,7 +116,8 @@ class UserDataPanelExtender(extensible.FormExtender):
     def update(self):
         fields = Fields(IEnhancedUserDataSchema)
         if 'fullname' in self.form.fields.keys():
-            self.remove('fullname')
+            #self.remove('fullname')
+            self.form.fields['fullname'].mode = HIDDEN_MODE
         self.add(fields)
         #self.remove('portrait')
         self.move('email', after='cellphone_no')
@@ -139,7 +140,7 @@ class AddUserFormExtender(extensible.FormExtender):
     def update(self):
         fields = Fields(IEnhancedUserDataSchema)
         if 'fullname' in self.form.fields.keys():
-            self.remove('fullname')
+            self.form.fields['fullname'].mode = HIDDEN_MODE
         self.add(fields)
         self.move('email', after='cellphone_no')
         self.move('mail_me', after='last_name')
@@ -157,7 +158,7 @@ class RegistrationPanelExtender(extensible.FormExtender):
     def update(self):
         fields = Fields(IEnhancedUserDataSchema)
         if 'fullname' in self.form.fields.keys():
-            self.remove('fullname')
+            self.form.fields['fullname'].mode = HIDDEN_MODE
         self.add(fields)
         self.move('email', after='cellphone_no')
         self.move('mail_me', after='last_name')
