@@ -121,9 +121,12 @@ class UserDataPanelExtender(extensible.FormExtender):
         #self.remove('portrait')
         self.move('email', after='cellphone_no')
         self.move('description', after='secondary_competencies')
-        self.move('portrait', after='description')
-        self.move('location', after='description')
-        self.move('home_page', after='description')
+        if 'portrait' in self.form.fields.keys():
+            self.move('portrait', after='description')
+        if 'location' in self.form.fields.keys():
+            self.move('location', after='description')
+        if 'home_page' in self.form.fields.keys():
+            self.move('home_page', after='description')
         #self.form.fields['fullname'].mode = HIDDEN_MODE
         
         
