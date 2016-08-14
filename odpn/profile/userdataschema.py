@@ -27,6 +27,8 @@ from zope.interface import invariant, Invalid
 from plone.app.users.browser.userdatapanel import UserDataPanel
 from plone.autoform import directives
 from z3c.form.interfaces import HIDDEN_MODE, INPUT_MODE, DISPLAY_MODE, HIDDEN_MODE
+from odpn.profile.interfaces import IProductSpecific
+from plone.app.users.browser.register import RegistrationForm, AddUserForm
 
 
 
@@ -109,15 +111,60 @@ class IEnhancedUserDataSchema(model.Schema):
     #     description=u'',
     #     required=False)
 
-@adapter(Interface, IDefaultBrowserLayer, UserDataPanel)
+@adapter(Interface, IProductSpecific, UserDataPanel)
 class UserDataPanelExtender(extensible.FormExtender):
     def update(self):
         fields = Fields(IEnhancedUserDataSchema)
+        if 'fullname' in self.form.fields.keys():
+            self.remove('fullname')
         self.add(fields)
         #self.remove('portrait')
         self.move('email', after='cellphone_no')
         self.move('description', after='secondary_competencies')
+        self.move('portrait', after='description')
+        self.move('location', after='description')
+        self.move('home_page', after='description')
         #self.form.fields['fullname'].mode = HIDDEN_MODE
         
+        
+
+    
+@adapter(Interface, IProductSpecific, AddUserForm)
+class AddUserFormExtender(extensible.FormExtender):
+    
+
+    def update(self):
+        fields = Fields(IEnhancedUserDataSchema)
+        if 'fullname' in self.form.fields.keys():
+            self.remove('fullname')
+        self.add(fields)
+        self.move('email', after='cellphone_no')
+        self.move('mail_me', after='last_name')
+        self.move('password_ctl', after='last_name')
+        self.move('password', after='last_name')
+        self.move('username', after='last_name')
+        
+        
+        
+            
+        
+@adapter(Interface, IProductSpecific, RegistrationForm)
+class RegistrationPanelExtender(extensible.FormExtender):
+    
+    def update(self):
+        fields = Fields(IEnhancedUserDataSchema)
+        if 'fullname' in self.form.fields.keys():
+            self.remove('fullname')
+        self.add(fields)
+        self.move('email', after='cellphone_no')
+        self.move('mail_me', after='last_name')
+        self.move('password_ctl', after='last_name')
+        self.move('password', after='last_name')
+        self.move('username', after='last_name')
+        
+        
+            
 class EnhancedUserDataSchemaAdapter(AccountPanelSchemaAdapter):
     schema = IEnhancedUserDataSchema
+    
+
