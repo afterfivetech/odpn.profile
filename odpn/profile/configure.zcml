@@ -15,6 +15,7 @@
 
     <include package=".behavior"/>
     <include package=".portlet"/>
+    <include package=".browser" />
 
     <browser:resourceDirectory 
         name="odpn.profile"
@@ -31,4 +32,12 @@
       for="plone.app.layout.navigation.interfaces.INavigationRoot"
       factory=".userdataschema.EnhancedUserDataSchemaAdapter"
       />
+    
+    <adapter
+      factory=".userdataschema.AddUserFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender" />
+    
+    <adapter
+      factory=".userdataschema.RegistrationPanelExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender" />
 </configure>
