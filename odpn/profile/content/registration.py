@@ -65,23 +65,23 @@ def getUser():
     return ''
 
 @form.default_value(field=IRegistration['first_name'])
-def getFirstName(self):
+def getData(self):
     return getUser().first_name
 
 @form.default_value(field=IRegistration['mid_initial'])
-def getFirstName(self):
+def getData(self):
     return getUser().mid_initial
 
 @form.default_value(field=IRegistration['last_name'])
-def getFirstName(self):
+def getData(self):
     return getUser().last_name
 
 @form.default_value(field=IRegistration['email_address'])
-def getFirstName(self):
+def getData(self):
     return getUser().email
 
 @form.default_value(field=IRegistration['cellphone_no'])
-def getFirstName(self):
+def getData(self):
     return getUser().cellphone_no
 
 
