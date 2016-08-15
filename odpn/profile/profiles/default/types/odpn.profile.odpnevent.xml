@@ -13,7 +13,8 @@
   <property name="filter_content_types">True</property>  
   <property name="allowed_content_types" purge="False">
     <element value="odpn.profile.registration" />
-    <element value="odpn.profile.resource" />
+    <!-- <element value="odpn.profile.resource" /> -->
+    <element value='odpn.resources.resource'/>
   </property>
   <property name="allow_discussion">False</property>
 
