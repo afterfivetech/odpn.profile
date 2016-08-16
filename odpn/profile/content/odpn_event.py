@@ -23,14 +23,10 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from collective import dexteritytextindexer
 
 from odpn.profile import MessageFactory as _
+from plone.app.contenttypes.content import Event
 
 
 # Interface class; used to define content-type schema.
 
-class IODPNEvent(form.Schema, IImageScaleTraversable):
-    """
-    ODPN Event
-    """
-    pass
-
-alsoProvides(IODPNEvent, IFormFieldProvider)
+class IODPNEvent(Event):
+	"""Convenience subclass for ``Event`` portal type"""

@@ -5,5 +5,14 @@
 
     <include package="plone.app.portlets" file="permissions.zcml"/>
     <!-- -*- extra stuff goes here -*- -->
+    
+  <plone:portlet
+        name="odpn_event_links.portlet"
+        interface=".odpn_event_links.IContentNavigation"
+        assignment=".odpn_event_links.Assignment"
+        renderer=".odpn_event_links.Renderer"
+        addview=".odpn_event_links.AddForm"
+        editview=".odpn_event_links.EditForm"
+        />
 
 </configure>

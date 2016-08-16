@@ -1,0 +1,29 @@
+<div tal:condition="view/isAdmin" class="side_viewlet state-sign" tal:define="contents view/contents">
+    <p style="margin-bottom: 10px">
+	<a class="button" tal:attributes="href string:${context/absolute_url}/++add++odpn.resources.resource">
+	    <i class="fa fa-plus-circle"></i>
+	    <span>Add Resource</span>
+	</a>
+    </p>
+</div>
+
+<div class="side_viewlet state-sign" tal:define="contents view/contents">
+    <p style="margin-bottom: 10px">
+	<a class="button" tal:attributes="href string:${context/absolute_url}/++add++odpn.profile.registration">
+	    <i class="fa fa-plus-circle"></i>
+	    <span>Register</span>
+	</a>
+    </p>    
+</div>
+
+<div tal:condition="view/isMember" class="side_viewlet state-sign" tal:define="contents view/contents">
+    <p style="margin-bottom: 10px">
+	<a class="button" tal:attributes="href string:${context/absolute_url}/manage_registrations">
+	    <i class="fa fa-plus-circle"></i>
+	    <span>Manage Registrations</span>
+	</a>
+    </p>
+</div>
+
+
+
