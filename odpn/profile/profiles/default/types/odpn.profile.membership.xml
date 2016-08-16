@@ -1,29 +1,27 @@
 <?xml version="1.0"?>
-<object name="odpn.profile.profile"
+<object name="odpn.profile.membership"
    meta_type="Dexterity FTI"
    i18n:domain="odpn.profile" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
-  <property name="title" i18n:translate="">Profile</property>
+  <property name="title" i18n:translate="">Membership</property>
   <property name="description"
-    i18n:translate="">Profile</property>
-  <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
-  <property name="factory">odpn.profile.profile</property>
-  <property name="global_allow">True</property>
-  <property name="filter_content_types">True</property>  
-  <property name="allowed_content_types" purge="False">
-    <element value="odpn.profile.membership" />
-  </property>
+    i18n:translate="">Membership</property>
+  <property name="icon_expr">string:${portal_url}/document_icon.png</property>
+  <property name="factory">odpn.profile.membership</property>
+  <property name="global_allow">False</property>
+  <property name="filter_content_types">False</property>  
+  <property name="allowed_content_types" />
   <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">odpn.profile.content.profile.IProfile</property> 
-  <property name="klass">plone.dexterity.content.Container</property>
+  <property name="schema">odpn.profile.content.membership.IMembership</property> 
+  <property name="klass">plone.dexterity.content.Item</property>
   <property name="behaviors">
      <element value="plone.app.content.interfaces.INameFromTitle" />
      <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
      <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
-     <!--<element value="plone.app.referenceablebehavior.referenceable.IReferenceable"/>-->
+     <element value="plone.app.referenceablebehavior.referenceable.IReferenceable"/>
      <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer"/>
      <element value="plone.app.versioningbehavior.behaviors.IVersionable"/>
    </property>
