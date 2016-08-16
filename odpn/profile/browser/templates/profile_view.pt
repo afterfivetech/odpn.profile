@@ -42,6 +42,37 @@
             <metal:use_macro use-macro="listing_macro" />
         </tal:block>
     </fieldset>-->
+    
+    <div tal:define="info view/user_info">
+        <img width="100" tal:attributes="alt string:Profile Pic; src python: info['portrait']"/>
+        <br/><br/>
+        <table width="auto">
+            <tr>
+                <td>Name</td>
+                <td tal:content="info/fullname"></td>
+            </tr>
+            <tr>
+                <td>Contact Details</td>
+                <td tal:content="python:info['contact_details']"></td>
+            </tr>
+            <tr>
+                <td>Industry</td>
+                <td tal:content="info/industry"></td>
+            </tr>
+            <tr>
+                <td>Primary Competencies</td>
+                <td tal:content="info/primary_competencies"></td>
+            </tr>
+            <tr>
+                <td>Secondary Competencies</td>
+                <td tal:content="info/secondary_competencies"></td>
+            </tr>
+            <tr>
+                <td>Biography</td>
+                <td tal:content="structure info/biography"></td>
+            </tr>
+        </table>
+    </div>
 
   </metal:content-core>
 </metal:main>
