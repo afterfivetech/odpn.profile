@@ -33,27 +33,27 @@ class IMembership(form.Schema, IImageScaleTraversable):
 
     membership_year = schema.TextLine(
         title=_(u'Year'),
-        required=True
+        required=False
     )
 
     membership_type = schema.TextLine(
         title=_(u'Type'),
-        required=True
+        required=False
     )
 
     category = schema.TextLine(
         title=_(u'Category'),
-        required=True
+        required=False
     )
 
     receipt_no = schema.TextLine(
         title=_(u'Receipt No'),
-        required=True
+        required=False
     )
 
     membership_validity = schema.Date(
         title=_(u'Year'),
-        required=True
+        required=False
     )
 
 
