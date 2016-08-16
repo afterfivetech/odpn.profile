@@ -30,6 +30,34 @@ class IMembership(form.Schema, IImageScaleTraversable):
     """
     Membership
     """
+
+    membership_year = schema.TextLine(
+        title=_(u'Year'),
+        required=True
+    )
+
+    membership_type = schema.TextLine(
+        title=_(u'Type'),
+        required=True
+    )
+
+    category = schema.TextLine(
+        title=_(u'Category'),
+        required=True
+    )
+
+    receipt_no = schema.TextLine(
+        title=_(u'Receipt No'),
+        required=True
+    )
+
+    membership_validity = schema.Date(
+        title=_(u'Year'),
+        required=True
+    )
+
+
+
     pass
 
 alsoProvides(IMembership, IFormFieldProvider)
