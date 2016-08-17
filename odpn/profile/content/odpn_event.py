@@ -28,5 +28,14 @@ from plone.app.contenttypes.content import Event
 
 # Interface class; used to define content-type schema.
 
-class IODPNEvent(Event):
-	"""Convenience subclass for ``Event`` portal type"""
+# class IODPNEvent(Event):
+# 	"""Convenience subclass for ``Event`` portal type"""
+
+
+class IODPNEvent(form.Schema):
+    """
+       Marker/Form interface for ODPN Resource
+    """
+    # -*- Your Zope schema definitions here ... -*-
+
+alsoProvides(IODPNEvent,IFormFieldProvider)
