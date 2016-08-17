@@ -2,5 +2,10 @@
 <portlets>
 
     <!-- -*- extra stuff goes here -*- -->
+	<assignment name="odpn_event_links" category="content_type"
+        key="odpn.profile.odpnevent" manager="plone.leftcolumn"
+        type="odpn_event_links.portlet" visible="True">
+        <property name="portlet_title">ODPN Event Links</property>
+	</assignment>
 
 </portlets>

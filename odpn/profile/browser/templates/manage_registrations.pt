@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" metal:use-macro="context/main_template/macros/master" i18n:domain="odpn.profile">
+
+<head>
+</head>
+
+<body>
+    <metal:main fill-slot="main">
+        <h1 class="documentFirstHeading" i18n:translate="">Manage Registrations</h1>
+
+        <fieldset>
+            <legend i18n:translate="">Registered</legend>
+            <table class="listing" tal:define="registrations python:context.portal_catalog.searchResults(portal_type='odpn.profile.registration', path='/'.join(context.getPhysicalPath()))">
+                <tr>
+                    <th i18n:translate="">Fullname</th>
+                    <th i18n:translate="">Email Address</th>
+                    <th i18n:translate="">Contact Number</th>
+                    <th i18n:translate="">Action</th>
+                </tr>
+                <tr tal:repeat="registration registrations">
+                    <tal:element tal:define="obj registration/getObject">
+                    <td><a tal:attributes="href registration/getURL" tal:content="python: ', '.join([obj.last_name, obj.first_name]).title()" /></td>
+                    <td tal:content="obj/email_address"/>
+                    <td tal:content="obj/cellphone_no"/>
+                    <td> <a i18n:translate="" tal:attributes="href python:registration.getPath()+'/edit'" class="context btn btn-info actionicon-object_buttons-edit pat-plone-modal">Edit</a></td>
+                </tal:element>
+                </tr>
+            </table>
+        </fieldset>
+    </metal:main>
+</body>
+
+</html>
