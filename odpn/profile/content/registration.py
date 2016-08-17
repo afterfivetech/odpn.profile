@@ -61,28 +61,29 @@ alsoProvides(IRegistration, IFormFieldProvider)
 def getUser():
     if not api.user.is_anonymous():
         current = api.user.get_current()
-        return current
+        if hasattr(current, 'getProperty'):
+            return current
     return ''
 
 @form.default_value(field=IRegistration['first_name'])
 def getData(self):
-    return getUser().first_name
+    return getUser().getProperty("first_name")
 
 @form.default_value(field=IRegistration['mid_initial'])
 def getData(self):
-    return getUser().mid_initial
+    return getUser().getProperty("mid_initial")
 
 @form.default_value(field=IRegistration['last_name'])
 def getData(self):
-    return getUser().last_name
+    return getUser().getProperty("last_name")
 
 @form.default_value(field=IRegistration['email_address'])
 def getData(self):
-    return getUser().email
+    return getUser().getProperty("email")
 
 @form.default_value(field=IRegistration['cellphone_no'])
 def getData(self):
-    return getUser().cellphone_no
+    return getUser().getProperty("cellphone_no")
 
 
 
