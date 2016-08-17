@@ -23,6 +23,11 @@ from collective import dexteritytextindexer
 
 from odpn.profile import MessageFactory as _
 
+membershiptype=SimpleVocabulary(
+    [SimpleTerm(value=u'Application',title=_(u'Application')),
+    SimpleTerm(value=u'Renewal',title=_(u'Renewal'))]
+)
+
 
 # Interface class; used to define content-type schema.
 
@@ -36,8 +41,9 @@ class IMembership(form.Schema, IImageScaleTraversable):
         required=False
     )
 
-    membership_type = schema.TextLine(
+    membership_type = schema.Choice(
         title=_(u'Type'),
+        vocabulary=membershiptype,
         required=False
     )
 
