@@ -40,4 +40,11 @@
     <adapter
       factory=".userdataschema.RegistrationPanelExtender"
       provides="plone.z3cform.fieldsets.interfaces.IFormExtender" />
+    
+    <browser:page
+        name="competency-settings"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".controlpanel.CompetencyFormView"
+        permission="cmf.ManagePortal"
+        />
 </configure>

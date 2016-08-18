@@ -29,8 +29,23 @@ from plone.autoform import directives
 from z3c.form.interfaces import HIDDEN_MODE, INPUT_MODE, DISPLAY_MODE, HIDDEN_MODE
 from odpn.profile.interfaces import IProductSpecific
 from plone.app.users.browser.register import RegistrationForm, AddUserForm
+from five import grok
+from zope.schema.interfaces import IContextSourceBinder
+from plone.registry.interfaces import IRegistry
+from zope.component import getUtility
+from odpn.profile.interfaces import ICompetencyDGForm
+from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
 
+@grok.provider(IContextSourceBinder)
+def competency_val(context):
+    registry = getUtility(IRegistry)
+    settings = registry.forInterface(ICompetencyDGForm, check=False)
+    values = []
+    if settings.competencies:
+        for val in settings.competencies:
+            values.append(SimpleTerm(value=val['primary_competencies_values'], token=val['primary_competencies_values'], title=val['primary_competencies_values']))
+    return SimpleVocabulary(values)
 
 class IEnhancedUserDataSchema(model.Schema):
 
@@ -81,13 +96,15 @@ class IEnhancedUserDataSchema(model.Schema):
         required=False,
         )
 
-    primary_competencies = schema.TextLine(
+    primary_competencies = schema.Choice(
         title=_(u'Primary Competencies'),
+        source = competency_val,
         required=False,
         )
 
-    secondary_competencies = schema.TextLine(
+    secondary_competencies = schema.Choice(
         title=_(u'Secondary Competencies'),
+        source = competency_val,
         required=False,
         )
 
@@ -110,6 +127,7 @@ class IEnhancedUserDataSchema(model.Schema):
     #     title=_(u'label_delete_portrait', default=u'Delete Portrait'),
     #     description=u'',
     #     required=False)
+    
 
 @adapter(Interface, IProductSpecific, UserDataPanel)
 class UserDataPanelExtender(extensible.FormExtender):
