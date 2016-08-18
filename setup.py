@@ -36,6 +36,7 @@ setup(name='odpn.profile',
           'plone.app.versioningbehavior',
           'plone.formwidget.contenttree',
           'Products.ATContentTypes',
+          'collective.z3cform.datagridfield',
           # -*- Extra requirements: -*-
       ],
       extras_require={
