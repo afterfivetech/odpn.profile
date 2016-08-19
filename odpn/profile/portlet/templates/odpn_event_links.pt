@@ -18,12 +18,32 @@
 
 <div tal:condition="view/isMember" class="side_viewlet state-sign" tal:define="contents view/contents">
     <p style="margin-bottom: 10px">
+	<a class="button" tal:attributes="href string:${context/absolute_url}/manage_reservations">
+	    <i class="fa fa-plus-circle"></i>
+	    <span>Manage Reservations</span>
+	</a>
+    </p>
+</div>
+
+<div tal:condition="view/isMember" class="side_viewlet state-sign" tal:define="contents view/contents">
+    <p style="margin-bottom: 10px">
 	<a class="button" tal:attributes="href string:${context/absolute_url}/manage_registrations">
 	    <i class="fa fa-plus-circle"></i>
 	    <span>Manage Registrations</span>
 	</a>
     </p>
 </div>
+
+<div tal:condition="view/isMember" class="side_viewlet state-sign" tal:define="contents view/contents">
+    <p style="margin-bottom: 10px">
+	<a class="button" tal:attributes="href string:${context/absolute_url}/manage_attendance">
+	    <i class="fa fa-plus-circle"></i>
+	    <span>Manage Event Attendance</span>
+	</a>
+    </p>
+</div>
+
+
 
 
 
