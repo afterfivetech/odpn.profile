@@ -5,7 +5,7 @@
     i18n:domain="odpn.site">
     
     <configlet
-        title="OPDN Settings"
+        title="ODPN Settings"
         action_id="opdn-settings"
         appId="odpn.profile.opdn.settings"
         category="Products"
