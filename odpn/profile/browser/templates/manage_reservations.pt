@@ -5,11 +5,11 @@
 
 <body>
     <metal:main fill-slot="main">
-        <h1 class="documentFirstHeading" i18n:translate="">Manage Registrations</h1>
+        <h1 class="documentFirstHeading" i18n:translate="">Manage Reservations</h1>
 
         <fieldset>
-            <legend i18n:translate="">Registered</legend>
-            <table class="listing" tal:define="registrations python:context.portal_catalog.searchResults(portal_type='odpn.profile.registration',review_state='confirmed', path='/'.join(context.getPhysicalPath()))">
+            <legend i18n:translate="">Reserved</legend>
+            <table class="listing" tal:define="registrations python:context.portal_catalog.searchResults(portal_type='odpn.profile.registration', review_state='submitted', path='/'.join(context.getPhysicalPath()))">
                 <tr>
                     <th i18n:translate="">Fullname</th>
                     <th i18n:translate="">Email Address</th>
@@ -22,14 +22,14 @@
                     <td tal:content="obj/email_address"/>
                     <td tal:content="obj/cellphone_no"/>
                     <td> 
-                        <a i18n:translate="" tal:attributes="href python:registration.getPath()+'/content_status_modify?workflow_action=attend'" class="context btn btn-info actionicon-object_buttons-edit pat-plone-modal">Attended</a>
+                        <a i18n:translate="" tal:attributes="href python:registration.getPath()+'/content_status_modify?workflow_action=confirm'" class="context btn btn-info actionicon-object_buttons-edit pat-plone-modal">Confirm</a>
 
-                        <a i18n:translate="" tal:attributes="href python:registration.getPath()+'/edit'" class="context btn btn-info actionicon-object_buttons-edit pat-plone-modal">Edit</a></td>
+                        <a i18n:translate="" tal:attributes="href python:registration.getPath()+'/delete_confirmation'" class="context btn btn-info actionicon-object_buttons-edit pat-plone-modal">Delete</a>
+                    </td>
                 </tal:element>
                 </tr>
             </table>
         </fieldset>
     </metal:main>
 </body>
-
 </html>
