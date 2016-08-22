@@ -13,7 +13,7 @@ class Index(dexterity.DisplayForm):
     grok.name('view')
     
     def user_info(self):
-        user_id = self.context.id
+        user_id = self.context.owner_info()['id']
         membership = getToolByName(self.context, 'portal_membership')
         user = membership.getMemberById(user_id)
         info = {'portrait':'#',

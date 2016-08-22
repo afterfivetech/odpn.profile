@@ -44,17 +44,17 @@
     </fieldset>-->
     
     <div tal:define="info view/user_info">
-        <img width="100" tal:attributes="alt string:Profile Pic; src python: info['portrait']"/>
-        <br/><br/>
+        <!--<img width="100" tal:attributes="alt string:Profile Pic; src python: info['portrait']"/>
+        <br/><br/>-->
         <table width="auto">
-            <tr>
+            <!--<tr>
                 <td>Name</td>
                 <td tal:content="info/fullname"></td>
             </tr>
             <tr>
                 <td>Contact Details</td>
                 <td tal:content="python:info['contact_details']"></td>
-            </tr>
+            </tr>-->
             <tr>
                 <td>Industry</td>
                 <td tal:content="info/industry"></td>
