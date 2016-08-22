@@ -14,5 +14,13 @@
         addview=".odpn_event_links.AddForm"
         editview=".odpn_event_links.EditForm"
         />
+  
+  <plone:portlet
+        name="profile_image.portlet"
+        interface=".profile_image_portlet.IContentNavigation"
+        assignment=".profile_image_portlet.Assignment"
+        renderer=".profile_image_portlet.Renderer"
+        addview=".profile_image_portlet.AddForm"
+        />
 
 </configure>
