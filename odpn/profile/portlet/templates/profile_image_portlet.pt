@@ -1,0 +1,3 @@
+<div tal:define="info view/contents">
+    <img width="100" tal:attributes="alt string:Profile Pic; src python: info['portrait']"/>
+</div>
