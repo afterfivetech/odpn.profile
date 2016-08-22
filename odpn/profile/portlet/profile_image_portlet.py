@@ -70,6 +70,12 @@ class Renderer(base.Renderer):
             if user.getProperty('cellphone_no'):
                 info['contact_details'] += 'Cell. No. '+user.getProperty('cellphone_no')
         return info
+    
+    def filter_edit_profile(self):
+        current_user = self.context.portal_membership.getAuthenticatedMember().getUserName()
+        if self.context.owner_info()['id'] == current_user:
+                return True
+        return False
 
 
 class AddForm(base.NullAddForm):
