@@ -24,8 +24,11 @@ class Index(dexterity.DisplayForm):
                 'secondary_competencies':'',
                 'biography':''}
         if user:
-            if user.getPersonalPortrait():
-                info['portrait'] = user.getPersonalPortrait().absolute_url()
+            if self.context.portal_membership.getPersonalPortrait(user_id):
+                info['portrait'] = self.context.portal_membership.getPersonalPortrait(user_id).absolute_url()
+            else:
+                if user.getPersonalPortrait():
+                    info['portrait'] = user.getPersonalPortrait().absolute_url()
             info['fullname'] = user.getProperty('first_name')+' '+user.getProperty('mid_initial')+'. '+user.getProperty('last_name')
             info['industry'] = user.getProperty('industry')
             info['primary_competencies'] = user.getProperty('primary_competencies')
