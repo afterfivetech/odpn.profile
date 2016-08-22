@@ -7,5 +7,16 @@
         type="odpn_event_links.portlet" visible="True">
         <property name="portlet_title">ODPN Event Links</property>
 	</assignment>
+	
+	 <portlet 
+		addview="profile_image.portlet"
+		title="Profile Image Portlet"
+		description=""/>
+	 
+	 <assignment name="profile_image_portlet" category="content_type"
+        key="odpn.profile.profile" manager="plone.leftcolumn"
+        type="profile_image.portlet" visible="True">
+        <property name="portlet_title">ODPN Profile Image Portlet</property>
+	</assignment>
 
 </portlets>
