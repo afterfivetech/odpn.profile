@@ -56,7 +56,7 @@
         <!--<img width="100" tal:attributes="alt string:Profile Pic; src python: info['portrait']"/>
         <br/><br/>-->
         <h1 tal:define="fullname info/fullname" tal:content="python: fullname.title()"/>
-        <table width="auto">
+        <table class="table table-striped">
             <!--<tr>
                 <td>Name</td>
                 <td tal:content="info/fullname"></td>
