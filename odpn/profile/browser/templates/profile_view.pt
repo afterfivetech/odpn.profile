@@ -5,6 +5,15 @@
       lang="en"
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="odpn.profile">
+    <head>
+        <metal:block fill-slot="style_slot">
+            <style>
+                .documentFirstHeading{
+                    display: none;
+                }
+            </style>
+        </metal:block>
+    </head>
 <body>
 
 <tal:comment tal:condition="nothing">
@@ -18,7 +27,7 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
-    <tal:block repeat="widget view/widgets/values">
+    <!--<tal:block repeat="widget view/widgets/values">
         <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
             <label tal:content="widget/label" />
             <br />
@@ -34,7 +43,7 @@
             <br />
             <div tal:content="structure widget/render" />
         </div>
-    </fieldset>
+    </fieldset>-->
 
     <!--<fieldset id="folder-listing">
         <legend>Contents</legend>
@@ -46,6 +55,7 @@
     <div tal:define="info view/user_info">
         <!--<img width="100" tal:attributes="alt string:Profile Pic; src python: info['portrait']"/>
         <br/><br/>-->
+        <h1 tal:define="fullname info/fullname" tal:content="python: fullname.title()"/>
         <table width="auto">
             <!--<tr>
                 <td>Name</td>
