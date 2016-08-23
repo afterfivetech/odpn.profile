@@ -18,9 +18,18 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
-    <p>
+    <div>
         <a tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/@@competency-settings;">Add Competency Type</a>
-    </p>
+        <br/>
+        <tal:if tal:define="results view/list_competencies">
+            <span>List of Competency Types</span>
+            <table>
+                <tr tal:repeat="result results">
+                    <td tal:content="result"/>
+                </tr>
+            </table>
+        </tal:if>
+    </div>
 
   </metal:content-core>
 </metal:main>
