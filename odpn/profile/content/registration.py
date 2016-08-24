@@ -24,8 +24,7 @@ from collective import dexteritytextindexer
 
 from odpn.profile import MessageFactory as _
 from plone import api
-
-# Interface class; used to define content-type schema.
+from plone.app.users.schema import checkEmailAddress
 
 class IRegistration(form.Schema, IImageScaleTraversable):
     """
@@ -48,7 +47,8 @@ class IRegistration(form.Schema, IImageScaleTraversable):
 
     email_address = schema.TextLine(
         title=_(u'Email Address'),
-        required=True
+        required=True,
+        constraint=checkEmailAddress,
     )
 
     cellphone_no = schema.TextLine(
@@ -84,7 +84,4 @@ def getData(self):
 @form.default_value(field=IRegistration['cellphone_no'])
 def getData(self):
     return getUser().getProperty("cellphone_no")
-
-
-
 
