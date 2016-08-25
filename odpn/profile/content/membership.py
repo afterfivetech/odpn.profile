@@ -22,6 +22,7 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from collective import dexteritytextindexer
 
 from odpn.profile import MessageFactory as _
+from datetime import date
 
 membershiptype=SimpleVocabulary(
     [SimpleTerm(value=u'Application',title=_(u'Application')),
@@ -67,3 +68,11 @@ class IMembership(form.Schema, IImageScaleTraversable):
     pass
 
 alsoProvides(IMembership, IFormFieldProvider)
+
+@form.default_value(field=IMembership['membership_year'])
+def getData(self):
+    return date.today().year
+
+@form.default_value(field=IMembership['membership_validity'])
+def getData(self):
+    return date.today().replace(date.today().year+1)
