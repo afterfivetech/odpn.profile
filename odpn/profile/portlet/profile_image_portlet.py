@@ -39,7 +39,11 @@ class Renderer(base.Renderer):
         self.request = request
         self.view = view
         self.manager = manager
-        
+
+    @property
+    def catalog(self):
+        return getToolByName(self.context, 'portal_catalog')
+    
     def contents(self):
         
         membership = getToolByName(self.context, 'portal_membership')
@@ -77,6 +81,14 @@ class Renderer(base.Renderer):
                 return True
         return False
 
+    def check_membership(self):
+        context = self.context
+        catalog = self.catalog
+        path = '/'.join(context.getPhysicalPath())
+        brains = catalog.searchResults(path= {'query': path, 'depth': 1},
+                                        portal_type='odpn.profile.membership')
+        for brain in brains:
+            return True
 
 class AddForm(base.NullAddForm):
     label = u"Add Profile Image Portlet"
@@ -84,4 +96,3 @@ class AddForm(base.NullAddForm):
     
     def create(self):
         return Assignment()
-    
