@@ -2,7 +2,20 @@
     <img width="100" tal:attributes="alt string:Profile Pic; src python: info['portrait']"/>
 </div>
 <div tal:condition="view/filter_edit_profile">
-    <a tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/@@personal-information">
-        <span class="tiny button" tal:content="string:Edit Profile"/>
-    </a>
+
+	<div>
+	    <a tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/@@personal-information">
+	        <span class="tiny button" tal:content="string:Edit Profile"/>
+	    </a>
+	</div>
+
+	<div>
+	    <a tal:condition="not: view/check_membership" tal:attributes="href string:${context/absolute_url}/++add++odpn.profile.membership">
+	        <span  class="tiny button" tal:content="string:Add Membership"/>
+	    </a>
+
+	    <a tal:condition="view/check_membership" tal:attributes="href string:${context/absolute_url}/++add++odpn.profile.membership?form.widgets.membership_type:list=Renewal">
+	        <span  class="tiny button" tal:content="string:Renew Membership"/>
+	    </a>
+	</div>
 </div>

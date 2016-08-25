@@ -20,7 +20,6 @@
   <property name="behaviors">
      <!--element value="plone.app.content.interfaces.INameFromTitle" />
      <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/-->
-     <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
      <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer"/>
      <element value="plone.app.versioningbehavior.behaviors.IVersionable"/>
    </property>
