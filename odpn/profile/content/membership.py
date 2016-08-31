@@ -39,7 +39,7 @@ class IMembership(form.Schema, IImageScaleTraversable):
 
     membership_year = schema.TextLine(
         title=_(u'Membership Year'),
-        required=False
+        required=True
     )
 
     membership_type = schema.Choice(

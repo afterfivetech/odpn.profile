@@ -23,4 +23,12 @@
         addview=".profile_image_portlet.AddForm"
         />
 
+  <plone:portlet
+        name="memberships_portlet.portlet"
+        interface=".memberships_portlet.IContentNavigation"
+        assignment=".memberships_portlet.Assignment"
+        renderer=".memberships_portlet.Renderer"
+        addview=".memberships_portlet.AddForm"
+        />
+
 </configure>

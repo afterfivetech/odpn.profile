@@ -19,4 +19,9 @@
         <property name="portlet_title">ODPN Profile Image Portlet</property>
 	</assignment>
 
+	<assignment name="memberships_portlet" category="content_type"
+        key="odpn.profile.profile" manager="plone.leftcolumn"
+        type="memberships_portlet.portlet" visible="True">
+	</assignment>
+
 </portlets>
