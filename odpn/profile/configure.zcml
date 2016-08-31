@@ -17,8 +17,6 @@
     <include package=".portlet"/>
     <include package=".browser" />
     <include file="overrides.zcml" />
-    <include file="overrides.zcml" />
-
 
     <browser:resourceDirectory 
         name="odpn.profile"
