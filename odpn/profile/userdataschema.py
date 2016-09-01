@@ -55,7 +55,7 @@ class IEnhancedUserDataSchema(model.Schema):
     #     )
     first_name = schema.TextLine(
         title=_(u'First Name'),
-        required=False,
+        required=True,
         )
 
     mid_initial = schema.TextLine(
@@ -140,7 +140,7 @@ class UserDataPanelExtender(extensible.FormExtender):
         if 'username' in self.form.fields.keys():
             self.form.fields['username'].field.required = False
             self.form.fields['username'].mode = HIDDEN_MODE
-            
+
         self.add(fields)
         #self.remove('portrait')
         self.move('email', after='cellphone_no')
