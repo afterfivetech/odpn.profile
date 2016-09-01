@@ -63,13 +63,20 @@ def isProfileIdAllowed(context, data):
 def _createObject(context, event):
     """Generate a user id from data.
     """
+    for manager_name in ('plone.leftcolumn','plone.rightcolumn'):
+        manager = getUtility(IPortletManager, name=manager_name)
+        assignable = getMultiAdapter((context, manager,), ILocalPortletAssignmentManager)
+        for category in (GROUP_CATEGORY,CONTEXT_CATEGORY,USER_CATEGORY):
+            assignable.setBlacklistStatus(category, 1)
+
     parent = context.aq_parent
     membership = getToolByName(context, 'portal_membership')
     user = api.user.get(username= context.owner_info()['id'])
-    info = {'fname': user.getProperty('first_name'),
-    		'mname': user.getProperty('mid_initial'),
-    		'lname': user.getProperty('last_name'),}
-    new_id = normalizeString(''.join([i for i in info.values() if i]))
+
+    fname = user.getProperty('first_name', '').split(' ')[0] if user.getProperty('first_name') else ''
+    mname = user.getProperty('mid_initial', '')[:1] if user.getProperty('mid_initial') else '' 
+    lname = user.getProperty('last_name', '') if user.getProperty('last_name') else ''
+    new_id = normalizeString(fname + mname + lname)
     if isProfileIdAllowed(context, new_id):
     	context_id = new_id
     else:
@@ -81,7 +88,8 @@ def _createObject(context, event):
 	            context_id = new_id1
 	            break;
 	        idx += 1
-    parent.manage_renameObject(context.getId(), context_id) 
-    context.reindexObject()
+    if context_id:
+	    parent.manage_renameObject(context.getId(), context_id) 
+	    context.reindexObject()
     return
 
