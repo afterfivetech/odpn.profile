@@ -1,9 +1,10 @@
-<br/>
-<p tal:condition="view/contents">Membership History</p>
-<div tal:repeat="membership view/contents">
-	<tal:element tal:define="obj membership/getObject">
-		<a tal:attributes="href membership/getURL">
-	        <span class="tiny button" tal:content="string: ${obj/membership_year} - ${membership/review_state}"/>
-	    </a>
-	</tal:element>
-</div>
+<h4><small tal:condition="view/contents">Membership History</small></h4>
+<p tal:repeat="membership view/contents">
+	<strong>
+		<tal:element tal:define="obj membership/getObject">
+			<a tal:attributes="href membership/getURL">
+				<span class="tiny button" tal:content="string: ${obj/membership_year} - ${membership/review_state}"/>
+			</a>
+		</tal:element>
+	</strong>
+</p>
