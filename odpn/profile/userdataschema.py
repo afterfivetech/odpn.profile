@@ -136,6 +136,8 @@ class UserDataPanelExtender(extensible.FormExtender):
         if 'fullname' in self.form.fields.keys():
             #self.remove('fullname')
             self.form.fields['fullname'].mode = HIDDEN_MODE
+        if 'username' in self.form.fields.keys():
+            self.form.fields['username'].mode = DISPLAY_MODE
         self.add(fields)
         #self.remove('portrait')
         self.move('email', after='cellphone_no')
@@ -154,17 +156,19 @@ class UserDataPanelExtender(extensible.FormExtender):
 @adapter(Interface, IProductSpecific, AddUserForm)
 class AddUserFormExtender(extensible.FormExtender):
     
-
     def update(self):
         fields = Fields(IEnhancedUserDataSchema)
         if 'fullname' in self.form.fields.keys():
             self.form.fields['fullname'].mode = HIDDEN_MODE
+
+        if 'username' in self.form.fields.keys():
+            self.form.fields['username'].mode = HIDDEN_MODE
         self.add(fields)
         self.move('email', after='cellphone_no')
         self.move('mail_me', after='last_name')
         self.move('password_ctl', after='last_name')
         self.move('password', after='last_name')
-        self.move('username', after='last_name')
+        #self.move('username', after='last_name')
         
         
         
