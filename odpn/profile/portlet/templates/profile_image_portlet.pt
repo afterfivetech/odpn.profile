@@ -50,7 +50,7 @@
 		</svg>
 		
 		<div class="polygon-each-img-wrap" tal:define="info view/contents">
-		  <img width="200px" tal:attributes="alt string:Profile Pic; src python: info['portrait']" class="polygon-clip-hexagon">
+		  <img width="100px" tal:attributes="alt string:Profile Pic; src python: info['portrait']" class="polygon-clip-hexagon">
 		</div>
 		
 	</div>
