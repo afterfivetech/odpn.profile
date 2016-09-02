@@ -127,7 +127,6 @@ class IEnhancedUserDataSchema(model.Schema):
     #     title=_(u'label_delete_portrait', default=u'Delete Portrait'),
     #     description=u'',
     #     required=False)
-    
 
 @adapter(Interface, IProductSpecific, UserDataPanel)
 class UserDataPanelExtender(extensible.FormExtender):
@@ -136,11 +135,6 @@ class UserDataPanelExtender(extensible.FormExtender):
         if 'fullname' in self.form.fields.keys():
             #self.remove('fullname')
             self.form.fields['fullname'].mode = HIDDEN_MODE
-        
-        if 'username' in self.form.fields.keys():
-            self.form.fields['username'].field.required = False
-            self.form.fields['username'].mode = HIDDEN_MODE
-            
         self.add(fields)
         #self.remove('portrait')
         self.move('email', after='cellphone_no')
@@ -152,9 +146,6 @@ class UserDataPanelExtender(extensible.FormExtender):
         if 'home_page' in self.form.fields.keys():
             self.move('home_page', after='description')
         #self.form.fields['fullname'].mode = HIDDEN_MODE
-        
-        
-
     
 @adapter(Interface, IProductSpecific, AddUserForm)
 class AddUserFormExtender(extensible.FormExtender):
@@ -163,11 +154,6 @@ class AddUserFormExtender(extensible.FormExtender):
         fields = Fields(IEnhancedUserDataSchema)
         if 'fullname' in self.form.fields.keys():
             self.form.fields['fullname'].mode = HIDDEN_MODE
-
-        if 'username' in self.form.fields.keys():
-            self.form.fields['username'].field.required = False
-            self.form.fields['username'].mode = HIDDEN_MODE
-
         self.add(fields)
         self.move('email', after='cellphone_no')
         self.move('mail_me', after='last_name')
@@ -182,20 +168,13 @@ class RegistrationPanelExtender(extensible.FormExtender):
         fields = Fields(IEnhancedUserDataSchema)
         if 'fullname' in self.form.fields.keys():
             self.form.fields['fullname'].mode = HIDDEN_MODE
-
-        if 'username' in self.form.fields.keys():
-            self.form.fields['username'].field.required = False
-            self.form.fields['username'].mode = HIDDEN_MODE
-
         self.add(fields)
         self.move('email', after='cellphone_no')
         self.move('mail_me', after='last_name')
         self.move('password_ctl', after='last_name')
         self.move('password', after='last_name')
-        #self.move('username', after='last_name')
+        self.move('username', after='last_name')
         
-        
-            
 class EnhancedUserDataSchemaAdapter(AccountPanelSchemaAdapter):
     schema = IEnhancedUserDataSchema
     
