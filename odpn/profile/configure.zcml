@@ -6,6 +6,7 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:grok="http://namespaces.zope.org/grok"
     xmlns:browser="http://namespaces.zope.org/browser"
+     xmlns:monkey="http://namespaces.plone.org/monkey"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="odpn.profile">
 
@@ -17,11 +18,13 @@
     <include package=".portlet"/>
     <include package=".browser" />
 
+ <include package="collective.monkeypatcher" />
     <browser:resourceDirectory 
         name="odpn.profile"
         directory="static"/>
 
     <!-- -*- extra stuff goes here -*- -->
+
 
     <adapter
       factory=".userdataschema.UserDataPanelExtender"
@@ -47,4 +50,20 @@
         class=".controlpanel.CompetencyFormView"
         permission="cmf.ManagePortal"
         />
+
+ <monkey:patch
+     description="patch when create Member area function fire a createMemberArea event"
+     class ="Products.PlonePAS.tools.membership.MembershipTool"
+     original="loginUser"
+     replacement=".membership.loginUser"
+  /> 
+
+    <monkey:patch
+     description="patch when create Member area function fire a createMemberArea event"
+     class ="Products.PlonePAS.tools.membership.MembershipTool"
+     original="getMemberareaCreationFlag"
+     replacement=".membership.getMemberareaCreationFlag"
+  />  
+
+
 </configure>
