@@ -1,18 +1,69 @@
-<div tal:define="info view/contents">
-    <img width="100" tal:attributes="alt string:Profile Pic; src python: info['portrait']"/>
-</div>
-<div tal:condition="view/filter_edit_profile">
-	    <a tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/@@personal-information">
-	        <span class="tiny button" tal:content="string:Edit Profile"/>
-	    </a>
-</div>
+<style type="text/css">
+	.prof-widget{
+		display: block;
+		padding: 4px;
+		margin-bottom: 20px;
+		line-height: 1.42857143;
+		background-color: #fff;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		-webkit-transition: border .2s ease-in-out;
+		-o-transition: border .2s ease-in-out;
+		transition: border .2s ease-in-out;
+	}
+	.prof-widget .prof-banner{
+		min-height: 100px;
+		background-color: #f9f9f9;
+	}
+	.prof-image .clip-svg{
+		width: 0;
+		height: 0;
+	}
+	.prof-widget .prof-image{
+		text-align: center;
+		margin-top: -75px;
+		margin-bottom: 20px;
+	}
+	.prof-widget .prof-image img {
+            max-width: 100%;
+            height: auto;
+        }
+	.prof-widget .prof-image .polygon-clip-hexagon {
+            -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            -webkit-clip-path: url("#polygon-clip-hexagon");
+            clip-path: url("#polygon-clip-hexagon");
+        }
+</style>
 
-<div>
-	    <a tal:condition="not: view/check_membership" tal:attributes="href string:${context/absolute_url}/++add++odpn.profile.membership">
-	        <span  class="tiny button" tal:content="string:Add Membership"/>
-	    </a>
-
-	    <a tal:condition="view/check_membership" tal:attributes="href string:${context/absolute_url}/++add++odpn.profile.membership?form.widgets.membership_type:list=Renewal">
-	        <span  class="tiny button" tal:content="string:Renew Membership"/>
-	    </a>
+<!--profile widget-->
+<div class="prof-widget">
+	<div class="prof-banner"></div>
+	<div class="prof-image">
+		
+		<svg class="clip-svg">
+			<defs>
+			  <clipPath id="polygon-clip-hexagon" clipPathUnits="objectBoundingBox">
+				<polygon points="0.5 0, 1 0.25, 1 0.75, 0.5 1, 0 0.75, 0 0.25" />
+			  </clipPath>
+			</defs>
+		</svg>
+		
+		<div class="polygon-each-img-wrap" tal:define="info view/contents">
+		  <img width="100px" tal:attributes="alt string:Profile Pic; src python: info['portrait']" class="polygon-clip-hexagon">
+		</div>
+		
 	</div>
+	<div class="prof-info" tal:condition="view/filter_edit_profile">
+		<p>
+			<strong>
+				<a tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/@@personal-information" tal:content="string:Edit Profile"/>					
+			</strong>
+		</p>
+		<p>
+			<strong>
+				<a tal:condition="view/check_membership" tal:attributes="href string:${context/absolute_url}/++add++odpn.profile.membership?form.widgets.membership_type:list=Renewal" tal:content="string:Renew Membership"/>
+			</strong>
+		</p>
+	</div>
+</div>
