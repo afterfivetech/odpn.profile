@@ -69,27 +69,27 @@ def _createObject(context, event):
         for category in (GROUP_CATEGORY,CONTEXT_CATEGORY,USER_CATEGORY):
             assignable.setBlacklistStatus(category, 1)
 
-    parent = context.aq_parent
-    membership = getToolByName(context, 'portal_membership')
-    user = api.user.get(username= context.owner_info()['id'])
+    # parent = context.aq_parent
+    # membership = getToolByName(context, 'portal_membership')
+    # user = api.user.get(username= context.owner_info()['id'])
 
-    fname = user.getProperty('first_name', '').split(' ')[0] if user.getProperty('first_name') else ''
-    mname = user.getProperty('mid_initial', '')[:1] if user.getProperty('mid_initial') else '' 
-    lname = user.getProperty('last_name', '') if user.getProperty('last_name') else ''
-    new_id = normalizeString(fname + mname + lname)
-    if isProfileIdAllowed(context, new_id):
-    	context_id = new_id
-    else:
-    	# Try juandcruz-1, juandcruz-2, etc.
-    	idx = 1
-    	while idx <= RENAME_AFTER_CREATION_ATTEMPTS:
-	        new_id1 = "%s-%d" % (new_id, idx)
-	        if isProfileIdAllowed(context, new_id1):
-	            context_id = new_id1
-	            break;
-	        idx += 1
-    if context_id:
-	    parent.manage_renameObject(context.getId(), context_id) 
-	    context.reindexObject()
+    # fname = user.getProperty('first_name', '').split(' ')[0] if user.getProperty('first_name') else ''
+    # mname = user.getProperty('mid_initial', '')[:1] if user.getProperty('mid_initial') else '' 
+    # lname = user.getProperty('last_name', '') if user.getProperty('last_name') else ''
+    # new_id = normalizeString(fname + mname + lname)
+    # if isProfileIdAllowed(context, new_id):
+    # 	context_id = new_id
+    # else:
+    # 	# Try juandcruz-1, juandcruz-2, etc.
+    # 	idx = 1
+    # 	while idx <= RENAME_AFTER_CREATION_ATTEMPTS:
+	   #      new_id1 = "%s-%d" % (new_id, idx)
+	   #      if isProfileIdAllowed(context, new_id1):
+	   #          context_id = new_id1
+	   #          break;
+	   #      idx += 1
+    # if context_id:
+	   #  parent.manage_renameObject(context.getId(), context_id) 
+	   #  context.reindexObject()
     return
 
