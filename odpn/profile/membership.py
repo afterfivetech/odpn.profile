@@ -78,8 +78,9 @@ def loginUser(self, REQUEST=None):
 
 def isProfileIdAllowed(self, data):
     members = self.getMembersFolder()
-    if not hasattr(members, data):
-        return True
+    if hasattr(members, data):
+        return False
+    return True
 
 def createMemberarea(self, member_id=None, minimal=None):
     """
@@ -101,18 +102,26 @@ def createMemberarea(self, member_id=None, minimal=None):
         mname = member.getProperty('mid_initial', '')[:1] if member.getProperty('mid_initial') else '' 
         lname = member.getProperty('last_name', '') if member.getProperty('last_name') else ''
         new_id = normalizeString(fname + mname + lname)
-        if isProfileIdAllowed(self, new_id):
-            context_id = new_id
+        
+        if hasattr(members, new_id):
+            #context_id = new_id
+            return
         else:
             # Try juandcruz-1, juandcruz-2, etc.
             idx = 1
             while idx <= RENAME_AFTER_CREATION_ATTEMPTS:
-                new_id1 = "%s%d" % (new_id, idx)
-                if isProfileIdAllowed(self, new_id1):
+                if idx == 1:
+                    new_id1 = "%s" % new_id
+                else:
+                    new_id1 = "%s%d" % (new_id, idx-1)
+                
+                if hasattr(members, new_id1):
+                    continue
+                else:
                     context_id = new_id1
                     break;
                 idx += 1
-
+        
     if hasattr(members, 'aq_explicit'):
         members = members.aq_explicit
 
