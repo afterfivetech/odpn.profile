@@ -55,17 +55,17 @@ class IEnhancedUserDataSchema(model.Schema):
     #     )
     first_name = schema.TextLine(
         title=_(u'First Name'),
-        required=False,
+        required=True,
         )
 
     mid_initial = schema.TextLine(
         title=_(u'Middle Initial'),
-        required=False,
+        required=True,
         )
 
     last_name = schema.TextLine(
         title=_(u'Last Name'),
-        required=False,
+        required=True,
         )
 
     telephone_no = schema.TextLine(
