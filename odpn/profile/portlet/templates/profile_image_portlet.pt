@@ -46,6 +46,7 @@
 		<p>
 			<strong>
 				<a tal:condition="view/check_membership" tal:attributes="href string:${context/absolute_url}/++add++odpn.profile.membership?form.widgets.membership_type:list=Renewal" tal:content="string:Renew Membership"/>
+				<a tal:condition="not: view/check_membership" tal:attributes="href string:${context/absolute_url}/++add++odpn.profile.membership?form.widgets.membership_type:list=Application" tal:content="string:New Membership"/>
 			</strong>
 		</p>
 	</div>
