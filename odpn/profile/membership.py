@@ -102,6 +102,7 @@ def createMemberarea(self, member_id=None, minimal=None):
         mname = member.getProperty('mid_initial', '')[:1] if member.getProperty('mid_initial') else '' 
         lname = member.getProperty('last_name', '') if member.getProperty('last_name') else ''
         new_id = normalizeString(fname + mname + lname)
+        complete_name = '%s %s. %s' % (fname, mname, lname)
         
         if hasattr(members, new_id):
             #context_id = new_id
@@ -175,7 +176,9 @@ def createMemberarea(self, member_id=None, minimal=None):
     member_folder.__ac_local_roles__ = None
     member_folder.manage_setLocalRoles(member_id, ['Owner'])
     # We use ATCT now use the mutators
-    member_folder.setTitle(safe_member_id or member_id)
+    #member_folder.setTitle(safe_member_id or member_id)
+    #custom Title
+    member_folder.setTitle(complete_name or '')
     member_folder.reindexObject()
 
     # Hook to allow doing other things after memberarea creation.
