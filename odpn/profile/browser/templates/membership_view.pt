@@ -17,14 +17,19 @@
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
-
-    <tal:block repeat="widget view/widgets/values">
-        <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
-            <label tal:content="widget/label" />
-            <br />
-            <div tal:content="structure widget/render" />
-        </div>
-    </tal:block>
+    
+    <table class="table table-striped">
+        <tal:block repeat="widget view/widgets/values">
+            <tr class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
+                <td>
+                    <label tal:content="widget/label" />
+                </td>
+                <td tal:content="structure widget/render" />
+            </tr>
+        </tal:block>
+    </table>
+    
+    
 
    <!-- <fieldset tal:repeat="group view/groups"
               tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
