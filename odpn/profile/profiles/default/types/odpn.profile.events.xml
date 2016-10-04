@@ -36,6 +36,7 @@
   <property name="view_methods">
    <element value="view"/>
    <element value="summary_view"/>
+   <element value="solgemafullcalendar_view"/>
   </property>
   <property name="default_view_fallback">False</property>
   <property name="add_permission">cmf.AddPortalContent</property>
