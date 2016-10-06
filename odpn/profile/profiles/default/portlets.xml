@@ -2,6 +2,11 @@
 <portlets>
 
     <!-- -*- extra stuff goes here -*- -->
+	<portlet 
+		addview="odpn_event_links.portlet"
+		title="ODPN Event Links"
+		description=""/>
+	
 	<assignment name="odpn_event_links" category="content_type"
         key="odpn.profile.odpnevent" manager="plone.leftcolumn"
         type="odpn_event_links.portlet" visible="True">
@@ -22,6 +27,16 @@
 	<assignment name="memberships_portlet" category="content_type"
         key="odpn.profile.profile" manager="plone.leftcolumn"
         type="memberships_portlet.portlet" visible="True">
+	</assignment>
+	
+	<portlet 
+		addview="odpn_event_resources.portlet"
+		title="Related Resources Portlet"
+		description=""/>
+	
+	<assignment name="odpn_event_resources_portlet" category="content_type"
+        key="odpn.profile.odpnevent" manager="plone.leftcolumn"
+        type="odpn_event_resources.portlet" visible="True">
 	</assignment>
 
 </portlets>
