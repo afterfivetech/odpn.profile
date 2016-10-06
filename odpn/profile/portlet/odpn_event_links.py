@@ -78,7 +78,7 @@ class Renderer(base.Renderer):
         return any((True for x in roles if x in allowed))
 
 class AddForm(base.AddForm):
-    form_fields = form.Fields(IContentNavigation)
+    schema = IContentNavigation
     label = u"Add 'Add ODPN Links Portlet'"
     description = ''
     
@@ -88,6 +88,6 @@ class AddForm(base.AddForm):
         return assignment
 
 class EditForm(base.EditForm):
-    form_fields = form.Fields(IContentNavigation)
+    schema = IContentNavigation
     label = u"Edit 'ODPN Links Portlet'"
     description = ''
