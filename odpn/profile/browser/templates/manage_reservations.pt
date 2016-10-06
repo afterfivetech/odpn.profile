@@ -22,7 +22,7 @@
                     <td tal:content="obj/email_address"/>
                     <td tal:content="obj/cellphone_no"/>
                     <td> 
-                        <a i18n:translate="" tal:attributes="href python:registration.getPath()+'/content_status_modify?workflow_action=approve'" class="context btn btn-info actionicon-object_buttons-edit pat-plone-modal">Confirm</a>
+                        <a i18n:translate="" tal:attributes="href python:registration.getPath()+'/content_status_modify?workflow_action=approve'" class="context btn btn-info actionicon-object_buttons-edit pat-plone-modal">Approve</a>
 
                         <a i18n:translate="" tal:attributes="href python:registration.getPath()+'/delete_confirmation'" class="context btn btn-info actionicon-object_buttons-edit pat-plone-modal">Delete</a>
                     </td>
