@@ -24,7 +24,7 @@ from collective import dexteritytextindexer
 
 from odpn.profile import MessageFactory as _
 from plone.app.contenttypes.content import Event
-
+from zope.lifecycleevent.interfaces import IObjectAddedEvent
 
 # Interface class; used to define content-type schema.
 
@@ -39,3 +39,8 @@ class IODPNEvent(form.Schema):
     # -*- Your Zope schema definitions here ... -*-
 
 alsoProvides(IODPNEvent,IFormFieldProvider)
+
+@grok.subscribe(IODPNEvent, IObjectAddedEvent)
+def _createObj(context, event):
+    context.setLayout("event_view")
+    return
