@@ -9,7 +9,7 @@
 
         <fieldset>
             <legend i18n:translate="">Registered</legend>
-            <table class="listing" tal:define="registrations python:context.portal_catalog.searchResults(portal_type='odpn.profile.registration',review_state='confirmed', path='/'.join(context.getPhysicalPath()))">
+            <table class="listing" tal:define="registrations python:context.portal_catalog.searchResults(portal_type='odpn.profile.registration',review_state='approved', path='/'.join(context.getPhysicalPath()))">
                 <tr>
                     <th i18n:translate="">Fullname</th>
                     <th i18n:translate="">Email Address</th>
@@ -22,7 +22,7 @@
                     <td tal:content="obj/email_address"/>
                     <td tal:content="obj/cellphone_no"/>
                     <td> 
-                        <a i18n:translate="" tal:attributes="href python:registration.getPath()+'/content_status_modify?workflow_action=attend'" class="context btn btn-info actionicon-object_buttons-edit pat-plone-modal">Attended</a>
+                        <!--<a i18n:translate="" tal:attributes="href python:registration.getPath()+'/content_status_modify?workflow_action=attend'" class="context btn btn-info actionicon-object_buttons-edit pat-plone-modal">Attended</a>-->
 
                         <a i18n:translate="" tal:attributes="href python:registration.getPath()+'/edit'" class="context btn btn-info actionicon-object_buttons-edit pat-plone-modal">Edit</a></td>
                 </tal:element>
