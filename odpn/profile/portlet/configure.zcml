@@ -30,5 +30,13 @@
         renderer=".memberships_portlet.Renderer"
         addview=".memberships_portlet.AddForm"
         />
+  
+  <plone:portlet
+        name="odpn_event_resources.portlet"
+        interface=".odpn_event_resources.IContentNavigation"
+        assignment=".odpn_event_resources.Assignment"
+        renderer=".odpn_event_resources.Renderer"
+        addview=".odpn_event_resources.AddForm"
+        />
 
 </configure>
