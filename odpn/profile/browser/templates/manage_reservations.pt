@@ -5,11 +5,12 @@
 
 <body>
     <metal:main fill-slot="main">
+        <script tal:attributes="src string:${context/absolute_url}/++resource++odpn.profile/sorttable.js"></script>
         <h1 class="documentFirstHeading" i18n:translate="">Manage Reservations</h1>
 
         <fieldset>
             <legend i18n:translate="">Reserved</legend>
-            <table class="listing" tal:define="registrations python:context.portal_catalog.searchResults(portal_type='odpn.profile.registration', review_state='submitted', path='/'.join(context.getPhysicalPath()))">
+            <table class="sortable" tal:define="registrations python:context.portal_catalog.searchResults(portal_type='odpn.profile.registration', review_state='submitted', path='/'.join(context.getPhysicalPath()))">
                 <tr>
                     <th i18n:translate="">Fullname</th>
                     <th i18n:translate="">Email Address</th>
