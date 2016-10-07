@@ -1,10 +1,16 @@
-<div class="side_viewlet state-sign" tal:condition="python: context.portal_type=='odpn.profile.odpnevent'">
+<div class="portletWrapper" tal:condition="python: context.portal_type=='odpn.profile.odpnevent'">
     <tal:if tal:define="brains view/resources" tal:condition="brains">
-        <h5>Related Resources</h5>
-        <tal:entry tal:repeat="brain brains">
-            <p>
-                <a tal:attributes="href python: brain.getURL()" tal:content="brain/Title"></a>
-            </p>
-        </tal:entry>
+        <section class="portlet">
+            <header class="portletHeader">Related Resources</header>
+            <section class="portletContent">
+                <ul>
+                    <tal:entry tal:repeat="brain brains">
+                        <li class="portletItem">
+                            <a tal:attributes="href python: brain.getURL()" tal:content="brain/Title"></a>
+                        </li>
+                    </tal:entry>
+                </ul>
+            </section>
+        </section>
     </tal:if>
 </div>
