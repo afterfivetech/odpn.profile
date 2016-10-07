@@ -10,7 +10,7 @@
 
         <fieldset>
             <legend i18n:translate="">Reserved</legend>
-            <table class="sortable" tal:define="registrations python:context.portal_catalog.searchResults(portal_type='odpn.profile.registration', review_state='submitted', path='/'.join(context.getPhysicalPath()))">
+            <table class="sortable table table-striped" tal:define="registrations python:context.portal_catalog.searchResults(portal_type='odpn.profile.registration', review_state='submitted', path='/'.join(context.getPhysicalPath()))">
                 <tr>
                     <th i18n:translate="">Fullname</th>
                     <th i18n:translate="">Email Address</th>
