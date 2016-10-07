@@ -67,21 +67,31 @@ def getUser():
 
 @form.default_value(field=IRegistration['first_name'])
 def getData(self):
-    return getUser().getProperty("first_name")
+    if getUser():
+        return getUser().getProperty("first_name")
+    return ''
 
 @form.default_value(field=IRegistration['mid_initial'])
 def getData(self):
-    return getUser().getProperty("mid_initial")
+    if getUser():
+        return getUser().getProperty("mid_initial")
+    return ''
 
 @form.default_value(field=IRegistration['last_name'])
 def getData(self):
-    return getUser().getProperty("last_name")
+    if getUser():
+        return getUser().getProperty("last_name")
+    return ''
 
 @form.default_value(field=IRegistration['email_address'])
 def getData(self):
-    return getUser().getProperty("email")
+    if getUser():
+        return getUser().getProperty("email")
+    return ''
 
 @form.default_value(field=IRegistration['cellphone_no'])
 def getData(self):
-    return getUser().getProperty("cellphone_no")
+    if getUser():
+        return getUser().getProperty("cellphone_no")
+    return ''
 
