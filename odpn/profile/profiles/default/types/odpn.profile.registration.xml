@@ -18,6 +18,7 @@
   <property name="schema">odpn.profile.content.registration.IRegistration</property> 
   <property name="klass">plone.dexterity.content.Item</property>
   <property name="behaviors">
+    <element value="plone.app.content.interfaces.INameFromTitle" />
    </property>
 
   <!-- View information -->
