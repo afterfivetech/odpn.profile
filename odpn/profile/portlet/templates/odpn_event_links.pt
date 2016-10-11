@@ -1,7 +1,7 @@
 <div class="side_viewlet state-sign" tal:define="contents view/contents">
     <p style="margin-bottom: 10px">
 	<a class="btn btn-primary" tal:attributes="href string:${context/absolute_url}/++add++odpn.profile.registration">
-	    <i class="fa fa-plus-circle"></i>
+	    <i class="fa fa-user-plus"></i>
 	    <span>Register</span>
 	</a>
     </p>    
@@ -20,7 +20,7 @@
 <div tal:condition="view/isMember" class="side_viewlet state-sign" tal:define="contents view/contents">
     <p style="margin-bottom: 10px">
 	<a tal:attributes="href string:${context/absolute_url}/manage_reservations">
-	    <i class="fa fa-plus-circle"></i>
+	    <i class="fa fa-sitemap"></i>
 	    <span>Manage Reservations</span>
 	</a>
     </p>
@@ -29,7 +29,7 @@
 <div tal:condition="view/isMember" class="side_viewlet state-sign" tal:define="contents view/contents">
     <p style="margin-bottom: 10px">
 	<a tal:attributes="href string:${context/absolute_url}/manage_registrations">
-	    <i class="fa fa-plus-circle"></i>
+	    <i class="fa fa-sitemap"></i>
 	    <span>Manage Registrations</span>
 	</a>
     </p>
@@ -38,7 +38,7 @@
 <div tal:condition="view/isMember" class="side_viewlet state-sign" tal:define="contents view/contents">
     <p style="margin-bottom: 10px">
 	<a tal:attributes="href string:${context/absolute_url}/manage_attendance">
-	    <i class="fa fa-plus-circle"></i>
+	    <i class="fa fa-sitemap"></i>
 	    <span>Manage Event Attendance</span>
 	</a>
     </p>
