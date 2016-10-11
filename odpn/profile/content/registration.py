@@ -25,6 +25,7 @@ from collective import dexteritytextindexer
 from odpn.profile import MessageFactory as _
 from plone import api
 from plone.app.users.schema import checkEmailAddress
+from zope.lifecycleevent.interfaces import IObjectAddedEvent
 
 class IRegistration(form.Schema, IImageScaleTraversable):
     """
@@ -94,4 +95,12 @@ def getData(self):
     if getUser():
         return getUser().getProperty("cellphone_no")
     return ''
+
+
+@grok.subscribe(IRegistration, IObjectAddedEvent)
+def _createObj(context, event):
+    title = '%s %s %s' % (context.first_name, context.mid_initial[0] or '', context.last_name)
+    context.setTitle(title)
+    context.reindexObject()
+    return
 
