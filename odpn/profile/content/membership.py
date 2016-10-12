@@ -23,6 +23,9 @@ from collective import dexteritytextindexer
 
 from odpn.profile import MessageFactory as _
 from datetime import date
+from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectModifiedEvent
+from zope.container.interfaces import INameChooser
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 membershiptype=SimpleVocabulary(
     [SimpleTerm(value=u'Application',title=_(u'Application')),
@@ -62,6 +65,12 @@ class IMembership(form.Schema, IImageScaleTraversable):
         title=_(u'Membership Validity'),
         required=False
     )
+    
+    form.mode(title='hidden')
+    title =  schema.TextLine(
+        title=u"Title",
+        required=False
+    )
 
 
 
@@ -76,3 +85,38 @@ def getData(self):
 @form.default_value(field=IMembership['membership_validity'])
 def getData(self):
     return date.today().replace(date.today().year+1)
+
+
+@grok.subscribe(IMembership, IObjectAddedEvent)
+def _createObj(context, event):
+    #title = '%s-%s' % (context.membership_year, context.membership_type)
+    #parent = context.aq_parent
+    #context.setTitle(title)
+    #context.title = title
+    #oid = INameChooser(parent).chooseName(title, context)
+    #setattr(context, 'id', oid)
+    #context.reindexObject()
+    
+    return
+
+@grok.subscribe(IMembership, IObjectModifiedEvent)
+def _modifyObj(context, event):
+    title = context.title
+    parent = context.aq_parent.aq_inner
+    oid = INameChooser(parent).chooseName(title, context)
+    if context.cb_userHasCopyOrMovePermission() and context.cb_isMoveable():
+        parent.manage_renameObject(context.getId(), oid)
+    
+    context.reindexObject()
+    return
+
+
+class IMembershipAddForm(dexterity.AddForm):
+    grok.name('odpn.profile.membership')
+    template = ViewPageTemplateFile('templates/membershipaddform.pt')
+    form.wrap(False)
+    
+
+class IMembershipEditForm(dexterity.EditForm):
+    grok.context(IMembership)
+    template = ViewPageTemplateFile('templates/membershipeditform.pt')
