@@ -116,8 +116,8 @@ def _createObj(context, event):
     #setattr(context, 'id', oid)
     context.reindexObject()
     statusmsg = IStatusMessage(context.REQUEST)
-    #statusmsg.add("Thank you for registering to this event.  We will confirm your registration by email", type=u"success")
-    context.plone_utils.addPortalMessage("Thank you for registering to this event.  We will confirm your registration by email.", "success")
+    statusmsg.add("Thank you for registering to this event.  We will confirm your registration by email", type=u"success")
+    #context.plone_utils.addPortalMessage("Thank you for registering to this event.  We will confirm your registration by email.", "success")
     return
 
 
