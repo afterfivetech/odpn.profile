@@ -1,4 +1,4 @@
-<div class="portletWrapper" tal:condition="python: context.portal_type=='odpn.profile.odpnevent'">
+<div class="portletWrapper" tal:define="isAnon context/@@plone_portal_state/anonymous" tal:condition="python: context.portal_type=='odpn.profile.odpnevent' and not isAnon">
     <tal:if tal:define="brains view/resources" tal:condition="brains">
         <section class="portlet">
             <header class="portletHeader">Related Resources</header>
