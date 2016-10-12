@@ -25,7 +25,10 @@ from collective import dexteritytextindexer
 from odpn.profile import MessageFactory as _
 from plone import api
 from plone.app.users.schema import checkEmailAddress
-from zope.lifecycleevent.interfaces import IObjectAddedEvent
+from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectModifiedEvent
+from zope.container.interfaces import INameChooser
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.statusmessages.interfaces import IStatusMessage
 
 class IRegistration(form.Schema, IImageScaleTraversable):
     """
@@ -55,6 +58,12 @@ class IRegistration(form.Schema, IImageScaleTraversable):
     cellphone_no = schema.TextLine(
         title=_(u'Cellphone No.'),
         required=True
+    )
+    
+    form.mode(title='hidden')
+    title = schema.TextLine(
+        title = u"Title",
+        required = False
     )
 
 alsoProvides(IRegistration, IFormFieldProvider)
@@ -100,7 +109,36 @@ def getData(self):
 @grok.subscribe(IRegistration, IObjectAddedEvent)
 def _createObj(context, event):
     title = '%s %s %s' % (context.first_name, context.mid_initial[0] or '', context.last_name)
-    context.setTitle(title)
+    parent = context.aq_parent
+    #context.setTitle(title)
+    context.title = title
+    oid = INameChooser(parent).chooseName(title, context)
+    #setattr(context, 'id', oid)
+    context.reindexObject()
+    statusmsg = IStatusMessage(context.REQUEST)
+    #statusmsg.add("Thank you for registering to this event.  We will confirm your registration by email", type=u"success")
+    context.plone_utils.addPortalMessage("Thank you for registering to this event.  We will confirm your registration by email.", "success")
+    return
+
+
+@grok.subscribe(IRegistration, IObjectModifiedEvent)
+def _modifyObj(context, event):
+    title = context.title
+    parent = context.aq_parent.aq_inner
+    oid = INameChooser(parent).chooseName(title, context)
+    if context.cb_userHasCopyOrMovePermission() and context.cb_isMoveable():
+        parent.manage_renameObject(context.getId(), oid)
+    
     context.reindexObject()
     return
+
+class IRegistrationAddForm(dexterity.AddForm):
+    grok.name('odpn.profile.registration')
+    template = ViewPageTemplateFile('templates/registrationaddform.pt')
+    form.wrap(False)
+    
+
+class IRegistrationEditForm(dexterity.EditForm):
+    grok.context(IRegistration)
+    template = ViewPageTemplateFile('templates/registrationeditform.pt')
 
