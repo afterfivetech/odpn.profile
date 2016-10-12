@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+    <head>
+      <metal:block fill-slot="column_one_slot" />
+    </head>
+
+<metal:styleslot fill-slot='style_slot'>
+  
+</metal:styleslot>
+<metal:javascript_head fill-slot="javascript_head_slot">
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#form').submit(function(){
+      title  = $('input#form-widgets-first_name').val()+' '+$('input#form-widgets-mid_initial').val()+' '+$('input#form-widgets-last_name').val();
+      $('input#form-widgets-title').val(title);
+    });
+  });
+</script>
+</metal:javascript_head>
+<body>
+<metal:main fill-slot="main">
+  <tal:main-macro metal:define-macro="main">
+    <h1 class="documentFirstHeading" tal:content="view/label | nothing" />
+    <div id="content-core" >
+      
+      <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
+    </div>
+
+    
+  </tal:main-macro>
+</metal:main>
+</body>
+</html>
