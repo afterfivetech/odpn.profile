@@ -63,7 +63,17 @@
      class ="Products.PlonePAS.tools.membership.MembershipTool"
      original="getMemberareaCreationFlag"
      replacement=".membership.getMemberareaCreationFlag"
-  />  
+  />
+    
+    
+  <!--<configure zcml:condition="installed plone.stringinterp">-->
+    <adapter
+      for="*"
+      provides="plone.stringinterp.interfaces.IStringSubstitution"
+      factory=".string_substitution.emailAddress"
+      name="email_address"
+      />
+  <!--</configure>-->
 
 
 </configure>
