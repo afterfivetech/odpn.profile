@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<object name="portal_catalog">
+    <index name="email_address" meta_type="FieldIndex">
+        <indexed_attr value="email_address"/>
+    </index>
+    <column value="email_address"/>
+</object>
